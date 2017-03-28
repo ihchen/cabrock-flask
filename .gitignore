@@ -7,3 +7,6 @@ config.py
 freeze.py
 freeze
 test.db
+tmp
+passenger_wsgi.py
+testfiles
