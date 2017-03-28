@@ -1,0 +1,37 @@
+img {
+    max-width: 100%;
+}
+.image-container{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Extra styling for xs */
+@media (max-width: 767px) {
+    .container {    /* In xs, .row isn't centered, so center it */
+        text-align: center;
+    }               /* In xs, .row does not take up entirety of container, so set it */
+    .image-container {
+        width: 100%;
+    }               /* Centers the image */
+    .col-xs-centered {
+        text-align: center;
+    }
+    img {
+        max-height: 345px;
+    }
+}
+
+.text-container{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+blockquote {
+    border-left: 0;
+    font-size: 2em;
+    font-family: Calibri;
+}
+blockquote footer {
+    padding-top: 1.5em;
+    padding-bottom: 0;
+}

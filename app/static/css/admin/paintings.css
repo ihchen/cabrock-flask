@@ -1,0 +1,36 @@
+.image-admin {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 15px;
+}
+.image-admin .glyphicon {
+	padding-bottom: 15px;
+}
+.page-header {
+	position: relative;
+}
+.admin-page-buttons {
+	font-size: 25px;
+
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.caption input, .caption textarea {
+	width: 100%;
+	text-align: center;
+}
+.caption textarea {
+	border-style: solid;
+	border-color: white;
+	border-radius: 2px;
+	padding: 0;
+	height: 20px;
+	resize: none;
+}
+.caption textarea:focus {
+	border-color: #5cb3fd;
+}

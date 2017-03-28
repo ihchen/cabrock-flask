@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}: Contact{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h2 class="text-center">Contact</h2>
+</div>
+{% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+    <h4 class="alert alert-success text-center">{{ message }}</h4>
+    {% endfor %}
+{% endwith %}
+<div class="row text-container">
+    <div class="col-lg-4 col-sm-4 info-container">
+        <div id="contact-info">
+            <h2>Carly A. Brock</h2>
+            <h3>carlyabrock.com</h3>
+            <h4>carlybrockart@gmail.com</h4>
+        </div>
+    </div>
+    <div id="contact-form" class="col-lg-8 col-sm-8">
+        {% if form.errors %}
+        <ul class="errorlist">
+            {% for field in form.errors %}
+                {% for error in form.errors[field] %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form method="POST" action="{{ url_for('contact') }}">{{ form.csrf_token }}
+            <div class="form-group">
+                {{ form.name(**{
+                    'placeholder':form.name.label.text,
+                    'class':'form-input form-control',
+                    'required':'',
+                }) }}
+            </div>
+            <div class="form-group">
+                {{ form.email(**{
+                    'placeholder':form.email.label.text,
+                    'class':'form-input form-control',
+                    'required':'',
+                }) }}
+            </div>
+            <div class="form-group">
+                {{ form.subject(**{
+                    'placeholder':form.subject.label.text,
+                    'class':'form-input form-control',
+                }) }}
+            </div>
+            <div class="form-group">
+                {{ form.message(**{
+                    'placeholder':form.message.label.text,
+                    'class':'form-input form-control',
+                    'rows':'5',
+                    'required':'',
+                }) }}
+            </div>
+
+            <input class="btn btn-primary" type="submit" name="submit" value="Send Email" />
+        </form>
+    </div>
+</div>
+{% endblock %}

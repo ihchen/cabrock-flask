@@ -1,0 +1,9 @@
+__pycache__
+*.pyc
+flask
+migrations
+app.db
+config.py
+freeze.py
+freeze
+test.db

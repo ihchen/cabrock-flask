@@ -1,0 +1,101 @@
+.thumbnail {
+	max-width: 165px;
+	height: 165px;
+	cursor: pointer;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 0;
+	padding: 0;
+	border-radius: 0;
+	outline: 0;
+}
+.thumbnail-large {
+	max-width: 262.5px;
+	height: 262.5px;
+}
+.thumbnail:hover,.thumbnail:focus,.thumbnail:active {
+	border-color: transparent !important;
+}
+.thumbnail img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+
+	transition: 0.3s;
+}
+.thumbnail .caption {
+	font-family: Raleway;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	z-index: 1;
+	text-align: center;
+	opacity: 0;
+	transition: 0.3s;
+}
+.thumbnail .caption-title, .thumbnail .caption-detail{
+	color: black;
+}
+.caption-title {
+	font-size: 1.2em;
+	margin-bottom: 1em;
+}
+
+.thumbnail.hover:hover img {
+	opacity: 0.3;
+}
+.thumbnail.hover:hover .caption {
+	opacity: 1;
+}
+
+pre {
+	font-family: Calibri;
+	white-space: pre-wrap;
+	word-break: normal;
+	word-wrap: normal;
+
+	border-radius: 0;
+	border: 0;
+}
+
+@media (max-width: 480px) {
+	.col-xs-4 {
+		width: 50%;
+	}
+}
+
+.modal-backdrop.in {
+	filter: alpha(opacity=80) !important;
+	opacity: .8 !important;
+}
+.ekko-lightbox .modal-content {
+	font-family: Calibri;
+	color: white;
+
+	background-color: transparent;
+	border: 0;
+	-webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
+	box-shadow: 0 5px 15px rgba(0,0,0,0);
+}
+.ekko-lightbox .modal-header {
+	text-align: center;
+	border-bottom: 0;
+}
+.ekko-lightbox .modal-header .close {
+	color: white;
+	opacity: 1;
+	padding: 5px;
+}
+.ekko-lightbox .modal-header .close:hover {
+	opacity: .5;
+}
+.ekko-lightbox .modal-footer {
+	text-align: center !important;
+	border-top: 0;
+}
+.ekko-lightbox-nav-overlay a:focus {
+	text-decoration: none;
+}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}: Resume{% endblock %}
+
+{% block stylesheets %}
+<link rel='stylesheet' href="{{ url_for('static', filename='css/resume.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h2 class="text-center">Resume</h2>
+</div>
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <div id="pdf"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/pdfobject.min.js') }}"></script>
+<script>
+    PDFObject.embed("{{ url_for('static', filename='images/resume.pdf') }}", "#pdf");
+</script>
+{% endblock %}

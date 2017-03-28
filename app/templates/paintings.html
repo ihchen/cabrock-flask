@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}: {% if category %}{{ category.name }}{% else %}Paintings{% endif %}{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ekko-lightbox.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/paintings.css') }}" />
+{% if current_user.is_authenticated %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/paintings.css') }}" />
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h2 class="text-center">
+    {% if category %}
+        {% if category.header %}
+            {{ category.header }}<br />
+        {% endif %}
+        {{ category.name }}
+    {% else %}
+        Paintings
+    {% endif %}
+    </h2>
+    {% if current_user.is_authenticated %}
+    <div class="admin-page-buttons">
+        {% if category %}
+        <div class="glyphicon glyphicon-pencil" title="Edit Category Info" data-toggle="modal" data-target="#admin-modal"></div>
+        {% endif %}
+        <div class="glyphicon glyphicon-plus" title="Upload Painting" data-toggle="modal" data-target="#admin-modal"></div>
+    </div>
+    {% endif %}
+</div>
+<div class="row" id="image-grid">
+{% for p in paintings %}
+    <div class="{% if category.thumbsize_large %}col-lg-3 col-sm-3 col-xs-6{% else %}col-lg-2 col-sm-3 col-xs-4{% endif %} image-item{% if current_user.is_authenticated %} admin{% endif %}">
+        <a class="thumbnail hover{% if category.thumbsize_large %} thumbnail-large{% endif %}"
+        href="{{ url_for('get_media', filename=p.filename, file_type='image') }}"
+        data-toggle="lightbox" data-gallery="{{ header }}-gallery"
+        data-title="{{ p.name }}" data-id="{{ p.filename }}"
+        data-footer="{% if p.medium %}{{ p.medium }}{% endif %}
+                    {% if p.dimensions %}<br />{{ p.dimensions }}{% endif %}
+                    {% if p.year %}<br />{{ p.year }}{% endif %}">
+            <img class="img-responsive" src="{{ url_for('get_media', filename=p.thumbname, file_type='thumbnail') }}" alt="{{ p.name }}" />
+            <div class="caption">
+                <h5 class="caption-title">{{ p.name }}</h5>
+                <small class="caption-detail">
+                    <div class="detail-item" data-type="medium">{% if p.medium %}{{ p.medium }}{% endif %}</div>
+                    <div class="detail-item" data-type="dimensions">{% if p.dimensions %}{{ p.dimensions }}{% endif %}</div>
+                    <div class="detail-item" data-type="year">{% if p.year %}{{ p.year }}{% endif %}</div>
+                </small>
+            </div>
+        </a>
+        {% if current_user.is_authenticated %}
+        <div class="image-admin admin-hover">
+            <div class="glyphicon glyphicon-move" title="Move"></div>
+            <div class="glyphicon glyphicon-pencil" title="Edit"></div>
+            <div class="glyphicon glyphicon-floppy-disk hidden" title="Save"></div>
+            <div class="glyphicon glyphicon-trash" title="Delete"></div>
+        </div>
+        {% endif %}
+    </div>
+{% endfor %}
+</div>
+{% if category.description %}
+<div class="row">
+    <pre class="text-container">
+{{ category.description }}<!-- Can't have any tabs in this line -->
+    </pre>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/ekko-lightbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/paintings.js') }}"></script>
+{% if current_user.is_authenticated %}
+<script>
+var currentCategory = {% if category %}'{{category.name}}'{% else %}''{% endif %}
+var categoryList = [{% for cat in categories %}'{{ cat.name }}',{% endfor %}]
+var updatePaintingOrderURL = "{% if category %}{{ url_for('update_painting_order', category_slug=category.slug) }}{% else %}{{ url_for('update_painting_order') }}{% endif %}";
+var updatePaintingDetailsURL = "{{ url_for('edit_painting') }}";
+var deletePaintingURL = "{{ url_for('delete_painting') }}";
+var uploadPaintingURL = "{{ url_for('upload_painting') }}";
+</script>
+<script src="{{ url_for('static', filename='js/admin/paintings.js') }}"></script>
+{% if category %}
+<script>
+var categoryName = '{{ category.name }}';
+var categoryHeader = '{% if category.header %}{{ category.header }}{% endif %}';
+var categoryDescription = '{% if category.description %}{{ category.description }}{% endif %}';
+var categoryThumbsize = {% if category.thumbsize_large %}true{% else %}false{% endif %};
+var editCategoryURL = "{{ url_for('edit_category')}}"
+</script>
+<script src="{{ url_for('static', filename='js/admin/categories.js') }}"></script>
+{% endif %}
+{% endif %}
+{% endblock %}

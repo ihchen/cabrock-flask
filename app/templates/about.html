@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}: About{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h2 class="text-center">About</h2>
+</div>
+<div class="row image-container">
+    <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+        <img src="{{ url_for('static', filename='images/about1.jpg') }}" />
+    </div>
+    <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-centered">
+        <img src="{{ url_for('static', filename='images/about2.jpg') }}" />
+    </div>
+    <div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 hidden-xs">
+        <img src="{{ url_for('static', filename='images/about3.jpg') }}" />
+    </div>
+</div>
+<div class="page-header"></div> <!-- For the dotted border -->
+<div class="row text-container">
+    <div class="col-lg-5 col-md-5 col-sm-5">
+        <blockquote>
+            "The liberating potential of art is a catharsis of the imagination."
+            <footer>Barbara Rose</footer>
+        </blockquote>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-7">
+        <p>Carly is a painter from Skagit Valley, WA, an area beautifully situated between Seattle to the South, Vancouver BC to the North, the San Juan Islands to the West, and the North Cascades to the East. The area is what has inspired her to pursue landscape painting, as well as the artistic upbringing she received from observing her father, Joel Brock's, career as a painter. </p>
+        <p>She completed her Bachelor of Arts in Studio Art from the University of Puget Sound in Tacoma, WA and is making her move to Los Angeles in the fall to work as an art instructor. </p>
+        <p>Please contact Carly at carlybrockart@gmail.com if you are interested in purchasing a piece. </p>
+    </div>
+</div>
+{% endblock %}

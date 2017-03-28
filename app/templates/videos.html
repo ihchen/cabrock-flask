@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}: Videos{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/videos.css') }}" />
+{% if current_user.is_authenticated %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/videos.css') }}" />
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h2 class="text-center">Videos</h2>
+    {% if current_user.is_authenticated %}
+    <div class="glyphicon glyphicon-plus" title="Add New Video" data-target="#admin-modal" data-toggle="modal"></div>
+    {% endif %}
+</div>
+<div class="row" id="video-grid">
+    {% for v in videos %}
+    <div class="col-lg-6 col-md-6 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12 video-item{% if current_user.is_authenticated %} admin{% endif %}">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="{{ v.embed_url }}" allowfullscreen></iframe>
+        </div>
+        {% if current_user.is_authenticated %}
+        <div class="video-admin admin-hover">
+            <div class="glyphicon glyphicon-move" title="Move"></div>
+            <div class="glyphicon glyphicon-pencil" title="Edit" data-title="{% if v.name %}{{v.name}}{% endif %}" data-toggle="popover" data-html="true" data-container="body"></div>
+            <div class="glyphicon glyphicon-trash" title="Delete"></div>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if current_user.is_authenticated %}
+<script>
+var addVideoURL = "{{ url_for('add_video') }}";
+var updateVideoOrderURL = "{{ url_for('update_video_order') }}";
+var editVideoURL = "{{ url_for('edit_video') }}";
+var deleteVideoURL = "{{ url_for('delete_video') }}";
+</script>
+<script src="{{ url_for('static', filename='js/admin/videos.js') }}"></script>
+{% endif %}
+{% endblock %}
