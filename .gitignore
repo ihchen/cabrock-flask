@@ -4,10 +4,11 @@ flask
 migrations
 app.db
 config.py
-freeze.py
-freeze
 test.db
 tmp
 passenger_wsgi.py
 testfiles
 media
+depopulate.py
+imageDetails.csv
+populate.py
