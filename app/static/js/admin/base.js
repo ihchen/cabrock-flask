@@ -77,7 +77,7 @@ function deleteCategoryWithAjax(category) {
 
 $(document).ready(function() {
     // Url needs to be set in the HTML before importing this script
-    createSortable('dropdown-menu', '.dropdown-item', '.glyphicon-menu-hamburger', 150, function(evt) {
+    createSortable('painting-dropdown', '.dropdown-item', '.glyphicon-menu-hamburger', 150, function(evt) {
         if(evt.oldIndex != evt.newIndex) {
             $.post({
                 url: updateCategoryOrderURL,

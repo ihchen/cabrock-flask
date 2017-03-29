@@ -99,3 +99,11 @@ pre {
 .ekko-lightbox-nav-overlay a:focus {
 	text-decoration: none;
 }
+@media (max-width: 767px) {
+	.modal-dialog {
+		margin: 30px auto;
+	}
+	.modal-body {
+		padding: 0;
+	}
+}
