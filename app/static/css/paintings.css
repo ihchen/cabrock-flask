@@ -71,6 +71,12 @@ pre {
 	filter: alpha(opacity=80) !important;
 	opacity: .8 !important;
 }
+.ekko-lightbox.modal {
+	padding-right: 0px !important;
+}
+.modal-dialog {
+	margin: 0 auto;
+}
 .ekko-lightbox .modal-content {
 	font-family: Calibri;
 	color: white;
@@ -81,7 +87,7 @@ pre {
 	box-shadow: 0 5px 15px rgba(0,0,0,0);
 }
 .ekko-lightbox .modal-header {
-	text-align: center;
+	padding: 0;
 	border-bottom: 0;
 }
 .ekko-lightbox .modal-header .close {
@@ -92,7 +98,11 @@ pre {
 .ekko-lightbox .modal-header .close:hover {
 	opacity: .5;
 }
+.ekko-lightbox .modal-body {
+	padding: 0 15px;
+}
 .ekko-lightbox .modal-footer {
+	/*padding-bottom: 0px;*/
 	text-align: center !important;
 	border-top: 0;
 }
@@ -100,10 +110,7 @@ pre {
 	text-decoration: none;
 }
 @media (max-width: 767px) {
-	.modal-dialog {
-		margin: 30px auto;
-	}
-	.modal-body {
-		padding: 15px 0;
+	.ekko-lightbox .modal-body {
+		padding: 0;
 	}
 }

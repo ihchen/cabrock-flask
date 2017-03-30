@@ -363,13 +363,19 @@ var Lightbox = (function ($) {
 				this._titleIsShown = false;
 				if (title || this._config.alwaysShowClose) {
 					this._titleIsShown = true;
-					this._$modalHeader.css('display', '').find('.modal-title').html(title || "&nbsp;");
+					/* START EDIT */
+					// this._$modalHeader.css('display', '').find('.modal-title').html(title || "&nbsp;");
+					this._$modalHeader.css('display', '').find('.modal-title').html("&nbsp;");
+					/* END EDIT */
 				} else this._$modalHeader.css('display', 'none');
 
 				this._footerIsShown = false;
 				if (caption) {
 					this._footerIsShown = true;
-					this._$modalFooter.css('display', '').html(caption);
+					/* START EDIT */
+					// this._$modalFooter.css('display', '').html(caption);
+					this._$modalFooter.css('display', '').html('<h4 class="modal-title">'+title+'</h4>'+caption);
+					/* END EDIT */
 				} else this._$modalFooter.css('display', 'none');
 
 				return this;
@@ -539,6 +545,7 @@ var Lightbox = (function ($) {
 		}, {
 			key: '_resize',
 			value: function _resize(width, height) {
+				var MINIMUM_HEIGHT = 265;
 
 				height = height || width;
 				this._wantedWidth = width;
@@ -551,29 +558,42 @@ var Lightbox = (function ($) {
 					height = (maxWidth - widthBorderAndPadding) / width * height;
 					width = maxWidth;
 				} else width = width + widthBorderAndPadding;
-
+				console.log(height);
 				var headerHeight = 0,
 				    footerHeight = 0;
 
 				// as the resize is performed the modal is show, the calculate might fail
 				// if so, default to the default sizes
-				if (this._footerIsShown) footerHeight = this._$modalFooter.outerHeight(true) || 55;
+				/* START EDIT */
+				// if (this._footerIsShown) footerHeight = this._$modalFooter.outerHeight(true) || 55;
+				if (this._footerIsShown) footerHeight = this._$modalFooter.outerHeight(true) || 29;
 
-				if (this._titleIsShown) headerHeight = this._$modalHeader.outerHeight(true) || 67;
-
+				// if (this._titleIsShown) headerHeight = this._$modalHeader.outerHeight(true) || 67;
+				if (this._titleIsShown) headerHeight = this._$modalHeader.outerHeight(true) || 116;
+				/* END EDIT */
 				var borderPadding = this._padding.top + this._padding.bottom + this._border.bottom + this._border.top;
-
 				//calculated each time as resizing the window can cause them to change due to Bootstraps fluid margins
 				var margins = parseFloat(this._$modalDialog.css('margin-top')) + parseFloat(this._$modalDialog.css('margin-bottom'));
 
 				var maxHeight = Math.min(height, $(window).height() - borderPadding - margins - headerHeight - footerHeight);
 				if (height > maxHeight) {
 					// if height > the available height, scale down the width
+					/* START EDIT */
 					// But only if greater than threshold (prevents tiny images on small widescreens)
-					if (maxHeight <= 265)
-						maxHeight = 265;
+					if (maxHeight <= MINIMUM_HEIGHT) {
+						maxHeight = MINIMUM_HEIGHT;
+						// If image height is less than the minimum, use that as max instead
+						if (height < maxHeight) {
+							maxHeight = height;
+						}
+					}
+					/* END EDIT */
 					var factor = Math.min(maxHeight / height, 1);
-					width = Math.ceil(factor * width);
+					/* START EDIT */
+					// width = Math.ceil(factor * width);
+					// width already includes padding. remove to get width of image before scaling, then add back
+					width = Math.ceil(factor * (width-widthBorderAndPadding))+widthBorderAndPadding;
+					/* END EDIT */
 				}
 
 				this._$lightboxContainer.css('height', maxHeight);
