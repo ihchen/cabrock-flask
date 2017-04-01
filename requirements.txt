@@ -14,7 +14,6 @@ Jinja2==2.9.5
 Mako==1.0.6
 MarkupSafe==1.0
 olefile==0.44
-PIL==1.1.7
 Pillow==4.0.0
 pillowcase==2.0.0
 python-editor==1.0.3
