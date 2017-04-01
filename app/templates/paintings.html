@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}: {% if category %}{{ category.name }}{% else %}Paintings{% endif %}{% endblock %}
+{% block title %} | {% if category %}{{ category.name }}{% else %}Paintings{% endif %}{% endblock %}
+
+{% block description %}
+View Carly A. Brock's {% if category %}{{category.name}}{% endif %} paintings.
+{% endblock %}
+
+{% block keywords %}Carly Brock paintings, artworks{% if category %}, {{category.name}}{% endif %}{% endblock %}
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/ekko-lightbox.css') }}" />

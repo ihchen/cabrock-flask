@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}: About{% endblock %}
+{% block title %} | About{% endblock %}
+
+{% block description %}
+Learn more about Carly A. Brock and how to purchase one of her paintings.
+{% endblock %}
+
+{% block keywords %}Carly Brock about, purchase painting{% endblock %}
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}" />
@@ -12,13 +18,13 @@
 </div>
 <div class="row image-container">
     <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
-        <img src="{{ url_for('static', filename='images/about1.jpg') }}" />
+        <img class="side-image" src="{{ url_for('static', filename='images/about1.jpg') }}" />
     </div>
-    <div class="col-lg-4 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-centered">
-        <img src="{{ url_for('static', filename='images/about2.jpg') }}" />
+    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+        <img class="main-image" src="{{ url_for('static', filename='images/about2.jpg') }}" />
     </div>
-    <div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 hidden-xs">
-        <img src="{{ url_for('static', filename='images/about3.jpg') }}" />
+    <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+        <img class="side-image" src="{{ url_for('static', filename='images/about3.jpg') }}" />
     </div>
 </div>
 <div class="page-header"></div> <!-- For the dotted border -->

@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block description %}
+Carly A. Brock is a painter primarily focused on landscape painting. Discover more about her and her artworks here.
+{% endblock %}
+{% block keywords %}Carly Alexis Brock, artworks, landscape, painting{% endblock %}
+
 {% block body %}
-<img class="center-block img-responsive" src="{{ url_for('static', filename='images/Skagit Sunset.jpg') }}" alt="Skagit Sunset" />
+<img class="center-block img-responsive" src="{{ url_for('static', filename='images/Skagit Sunset.jpg') }}" alt="Skagit Sunset by Carly A. Brock" />
 {% endblock %}

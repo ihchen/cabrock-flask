@@ -1,11 +1,22 @@
-img {
-    max-width: 100%;
-}
 .image-container{
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: inherit;
 }
+img {
+    max-width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.main-image {
+    max-height: 345px;
+}
+.side-image {
+    max-height: 320px;
+}
+
 /* Extra styling for xs */
 @media (max-width: 767px) {
     .container {    /* In xs, .row isn't centered, so center it */
@@ -14,11 +25,9 @@ img {
     .image-container {
         width: 100%;
     }               /* Centers the image */
-    .col-xs-centered {
-        text-align: center;
-    }
     img {
-        max-height: 345px;
+        left: 0;
+        transform: translateX(0);
     }
 }
 

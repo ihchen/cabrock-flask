@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}: Resume{% endblock %}
+{% block title %} | Resume{% endblock %}
+
+{% block description %}
+View Carly A. Brock's resume.
+{% endblock %}
+
+{% block keywords %}Carly Brock resume, pdf{% endblock %}
 
 {% block stylesheets %}
 <link rel='stylesheet' href="{{ url_for('static', filename='css/resume.css') }}" />
