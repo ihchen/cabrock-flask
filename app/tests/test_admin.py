@@ -3,7 +3,7 @@ from PIL import Image
 from io import BytesIO
 
 from app.tests.base import TestCase
-from app.models import Painting, Category, AdminUser, Video
+from app.models import Painting, Category, AdminUser, Video, About
 from app import db, app
 from config import MEDIA_ROOT, BASE_DIR
 
@@ -345,3 +345,37 @@ class AdminUpload(TestCase):
             embedurl="test.com"
         ))
         self.assertEqual(Video.query.count(), 1)
+
+class AdminAbout(TestCase):
+    def test_about_edit_quote(self):
+        db.session.add(About(description="d", quote="q", quotee="qe"))
+        db.session.commit()
+
+        self.app.post('/update/about/details', data=dict(
+            component="quote",
+            content="quizzy"
+        ))
+
+        self.assertEqual(About.query.get(1).quote, "quizzy");
+
+    def test_about_edit_quotee(self):
+        db.session.add(About(description="d", quote="q", quotee="qe"))
+        db.session.commit()
+
+        self.app.post('/update/about/details', data=dict(
+            component="quotee",
+            content="qui"
+        ))
+
+        self.assertEqual(About.query.get(1).quotee, "qui");
+
+    def test_about_edit_description(self):
+        db.session.add(About(description="d", quote="q", quotee="qe"))
+        db.session.commit()
+
+        self.app.post('/update/about/details', data=dict(
+            component="description",
+            content="diefine"
+        ))
+
+        self.assertEqual(About.query.get(1).description, "diefine");

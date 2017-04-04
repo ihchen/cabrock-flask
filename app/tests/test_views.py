@@ -1,6 +1,6 @@
 from app.tests.base import TestCase
 from app import mail, db
-from app.models import Category,Painting,Video
+from app.models import Category,Painting,Video,About
 
 class Header(TestCase):
     def test_adding_category_adds_to_navigation_menu(self):
@@ -183,3 +183,14 @@ class ContactView(TestCase):
         ), follow_redirects=True)
 
         self.assertIn(b"Email successfully delivered", response.data)
+
+class AboutView(TestCase):
+    def test_about_model_details_appear_in_view(self):
+        a = About(description="about me!", quote="awesome quote", quotee="coolguy")
+        db.session.add(a)
+        db.session.commit()
+
+        response = self.app.get('/about/')
+        self.assertIn(b'about me!', response.data)
+        self.assertIn(b'awesome quote', response.data)
+        self.assertIn(b'coolguy', response.data)

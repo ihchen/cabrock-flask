@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from slugify import slugify
 
 from app import app, mail, db, login_manager
-from app.models import Category, Painting, Video, AdminUser
+from app.models import Category, Painting, Video, AdminUser, About
 from app.forms import ContactForm, LoginForm
 from config import MAIL_USERNAME, ALLOWED_EXTENSIONS
 
@@ -43,7 +43,7 @@ def videos():
 
 @app.route('/about/')
 def about():
-    return render_with_categories('about.html')
+    return render_with_categories('about.html', about_model=About.query.get(1))
 
 @app.route('/about/resume')
 def resume():
@@ -280,6 +280,12 @@ def edit_video():
     except:
         flash('Database error')
     return redirect(url_for('videos'))
+
+@app.route('/update/about/details', methods=['POST'])
+def edit_about():
+    model = About.query.get(1)
+    setattr(model, request.form['component'], request.form['content'])
+    return commitAndJsonify();
 
 # Deleting from database
 

@@ -31,10 +31,6 @@ img {
     }
 }
 
-.text-container{
-    padding-top: 1em;
-    padding-bottom: 1em;
-}
 blockquote {
     border-left: 0;
     font-size: 2em;
@@ -43,4 +39,14 @@ blockquote {
 blockquote footer {
     padding-top: 1.5em;
     padding-bottom: 0;
+}
+pre {
+	font-family: Calibri;
+	white-space: pre-wrap;
+	word-break: normal;
+	word-wrap: normal;
+
+	border-radius: 0;
+	border: 0;
+    background-color: transparent;
 }

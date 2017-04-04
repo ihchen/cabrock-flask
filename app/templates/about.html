@@ -10,6 +10,9 @@ Learn more about Carly A. Brock and how to purchase one of her paintings.
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}" />
+{% if current_user.is_authenticated %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/about.css') }}" />
+{% endif %}
 {% endblock %}
 
 {% block body %}
@@ -30,15 +33,28 @@ Learn more about Carly A. Brock and how to purchase one of her paintings.
 <div class="page-header"></div> <!-- For the dotted border -->
 <div class="row text-container">
     <div class="col-lg-5 col-md-5 col-sm-5">
-        <blockquote>
-            "The liberating potential of art is a catharsis of the imagination."
-            <footer>Barbara Rose</footer>
+        <blockquote{% if current_user.is_authenticated %} class="admin"{% endif %}>
+            <div id="quote">{{ about_model.quote }}</div>
+            {% if current_user.is_authenticated %}<span class="glyphicon glyphicon-pencil admin-hover" title="Edit Quote"></span><span class="glyphicon glyphicon-floppy-disk hidden" title="Save Quote"></span>{% endif %}
+            <footer{% if current_user.is_authenticated %} class="admin"{% endif %}>
+                <span id="quotee">{{ about_model.quotee }}</span>
+                {% if current_user.is_authenticated %}<span class="glyphicon glyphicon-pencil admin-hover" title="Edit Quotee"></span><span class="glyphicon glyphicon-floppy-disk hidden" title="Save Quotee"></span>{% endif %}
+            </footer>
         </blockquote>
     </div>
-    <div class="col-lg-7 col-md-7 col-sm-7">
-        <p>Carly is a painter from Skagit Valley, WA, an area beautifully situated between Seattle to the South, Vancouver BC to the North, the San Juan Islands to the West, and the North Cascades to the East. The area is what has inspired her to pursue landscape painting, as well as the artistic upbringing she received from observing her father, Joel Brock's, career as a painter. </p>
-        <p>She completed her Bachelor of Arts in Studio Art from the University of Puget Sound in Tacoma, WA and is making her move to Los Angeles in the fall to work as an art instructor. </p>
-        <p>Please contact Carly at carlybrockart@gmail.com if you are interested in purchasing a piece. </p>
+    <div class="col-lg-7 col-md-7 col-sm-7{% if current_user.is_authenticated %} admin{% endif %}">
+        <div id="description">{{ about_model.description|safe }}</div>
+        {% if current_user.is_authenticated %}<div class="glyphicon glyphicon-pencil admin-hover" title="Edit Description"></div><div class="glyphicon glyphicon-floppy-disk hidden" title="Save Description"></div>{% endif %}
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+{% if current_user.is_authenticated %}
+<script>
+var updateAboutURL = "{{ url_for('edit_about') }}";
+</script>
+<script src="{{ url_for('static', filename='js/autosize.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/about.js') }}"></script>
+{% endif %}
 {% endblock %}

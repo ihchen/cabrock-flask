@@ -31,7 +31,7 @@
     border-radius: 0px;
 }
 textarea {
-    height: 100px;
+    resize: none;
 }
 input[type="submit"] {
     background-color: black;

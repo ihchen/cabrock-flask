@@ -125,3 +125,9 @@ class Video(db.Model):
 
     def __repr__(self):
         return self.name
+
+class About(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String)
+    quote = db.Column(db.String)
+    quotee = db.Column(db.String)
