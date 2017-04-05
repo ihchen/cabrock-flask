@@ -2,21 +2,15 @@
     font-size: 14px;
 }
 
-.text-container > div {
-    position: relative;
-}
 blockquote.admin > .glyphicon {
     position: absolute;
     top: 10px;
     right: 20px;
 }
-div.admin .glyphicon {
+.description.admin .glyphicon {
     position: absolute;
     top: 0;
     right: 0;
-}
-#quote {
-    display: inline-block;
 }
 
 textarea {
