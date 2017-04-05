@@ -35,16 +35,16 @@ Learn more about Carly A. Brock and how to purchase one of her paintings.
     <div class="col-lg-5 col-md-5 col-sm-5">
         <blockquote{% if current_user.is_authenticated %} class="admin"{% endif %}>
             <div id="quote">{{ about_model.quote }}</div>
-            {% if current_user.is_authenticated %}<span class="glyphicon glyphicon-pencil admin-hovera" title="Edit Quote"></span><span class="glyphicon glyphicon-floppy-disk hidden" title="Save Quote"></span>{% endif %}
+            {% if current_user.is_authenticated %}<span class="glyphicon glyphicon-pencil admin-hover" title="Edit Quote"></span><span class="glyphicon glyphicon-floppy-disk hidden" title="Save Quote"></span>{% endif %}
             <footer{% if current_user.is_authenticated %} class="admin"{% endif %}>
                 <span id="quotee">{{ about_model.quotee }}</span>
-                {% if current_user.is_authenticated %}<span class="glyphicon glyphicon-pencil admin-hovera" title="Edit Quotee"></span><span class="glyphicon glyphicon-floppy-disk hidden" title="Save Quotee"></span>{% endif %}
+                {% if current_user.is_authenticated %}<span class="glyphicon glyphicon-pencil admin-hover" title="Edit Quotee"></span><span class="glyphicon glyphicon-floppy-disk hidden" title="Save Quotee"></span>{% endif %}
             </footer>
         </blockquote>
     </div>
     <div class="col-lg-7 col-md-7 col-sm-7{% if current_user.is_authenticated %} admin description{% endif %}">
         <div id="description">{{ about_model.description|safe }}</div>
-        {% if current_user.is_authenticated %}<div class="glyphicon glyphicon-pencil admin-hovera" title="Edit Description"></div><div class="glyphicon glyphicon-floppy-disk hidden" title="Save Description"></div>{% endif %}
+        {% if current_user.is_authenticated %}<div class="glyphicon glyphicon-pencil admin-hover" title="Edit Description"></div><div class="glyphicon glyphicon-floppy-disk hidden" title="Save Description"></div>{% endif %}
     </div>
 </div>
 {% endblock %}
