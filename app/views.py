@@ -70,6 +70,7 @@ def contact():
     return render_with_categories('contact.html', form=form)
 
 @app.errorhandler(404)
+@app.errorhandler(405)
 def page_not_found(e):
     return render_with_categories('404.html'), 404
 
