@@ -11,17 +11,23 @@ function editAboutComponent(component, editBtn) {
         content.html(`<input type="text" name="`+component+`" value="`+content.html()+`" />`);
     }
     else {
-        content.html(`<textarea name="`+component+`">`+content.html()+`</textarea>`);
+        var value;
+        if(component == 'description')
+            value = content.html().replace(/<\/p><p>/g, "\n\n").replace("<p>", "").replace("</p>", "");
+        else
+            value = content.html();
+        content.html(`<textarea name="`+component+`">`+value+`</textarea>`);
         autosize($('textarea'));
     }
 
     //On save click
-    saveBtn.click(function() {
+    saveBtn.on('click', function() {
         var newContent = content.children().val();
         if(component == 'description') {
             newContent = newContent.replace(/[\r\n|\r|\n]+/g, '</p><p>');
             newContent = "<p>"+newContent+"</p>";
         }
+        console.log(newContent);
         //Send ajax to update db
         $.post({
             url: updateAboutURL,
@@ -35,6 +41,8 @@ function editAboutComponent(component, editBtn) {
         content.html(newContent);
         saveBtn.addClass('hidden');
         editBtn.removeClass('hidden');
+        //Remove event handler
+        saveBtn.off('click');
     });
 }
 

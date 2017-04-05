@@ -117,7 +117,7 @@ $(document).ready(function() {
         })
 
         // Save changes
-        saveBtn.click(function() {
+        saveBtn.on('click', function() {
             // Get updated information
             details = {
                 filename: uniqueID,
@@ -155,6 +155,8 @@ $(document).ready(function() {
             thumbnail.addClass('hover');
             caption.removeAttr('style');
             thumbnail.attr('data-toggle', 'lightbox');
+
+            saveBtn.off('click');
         })
     })
 
