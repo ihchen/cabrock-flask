@@ -27,7 +27,6 @@ function editAboutComponent(component, editBtn) {
             newContent = newContent.replace(/[\r\n|\r|\n]+/g, '</p><p>');
             newContent = "<p>"+newContent+"</p>";
         }
-        console.log(newContent);
         //Send ajax to update db
         $.post({
             url: updateAboutURL,
@@ -48,15 +47,15 @@ function editAboutComponent(component, editBtn) {
 
 $(document).ready(function() {
     // Edit Quote
-    $('blockquote.admin > .glyphicon-pencil').click(function() {
+    $('blockquote.admin > .glyphicon-pencil').on('click', function() {
         editAboutComponent('quote', $(this));
     });
     // Edit Quotee
-    $('footer.admin > .glyphicon-pencil').click(function() {
+    $('footer.admin > .glyphicon-pencil').on('click', function() {
         editAboutComponent('quotee', $(this));
     });
     // Edit Description
-    $('div.admin > .glyphicon-pencil').click(function() {
+    $('div.admin > .glyphicon-pencil').on('click', function() {
         editAboutComponent('description', $(this));
     });
 })

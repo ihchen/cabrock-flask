@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.admin-page-buttons .glyphicon-pencil').click(function() {
+    $('.admin-page-buttons .glyphicon-pencil').on('click', function() {
         var modal = $('#admin-modal');
         var header = modal.find('.modal-header');
         var body = modal.find('.modal-body');

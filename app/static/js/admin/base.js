@@ -89,7 +89,7 @@ $(document).ready(function() {
         }
     })
     // Add a new category
-    $('.nav-item.admin .glyphicon-plus').click(function() {
+    $('.nav-item.admin .glyphicon-plus').on('click', function() {
         var modal = $('#admin-modal');
         var header = modal.find('.modal-header');
         var body = modal.find('.modal-body');
@@ -107,7 +107,7 @@ $(document).ready(function() {
         `);
     })
     // Delete Category
-    $('.dropdown-item.admin .glyphicon-trash').click(function() {
+    $('.dropdown-item.admin .glyphicon-trash').on('click', function() {
         categoryName = $(this).prev('a').html();
         deleteCategoryWithAjax(categoryName);
     })

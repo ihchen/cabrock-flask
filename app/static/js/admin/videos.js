@@ -39,7 +39,7 @@ $(document).ready(function() {
         }
     })
     // Add video
-    $('.page-header .glyphicon-plus').click(function() {
+    $('.page-header .glyphicon-plus').on('click', function() {
         var modal = $('#admin-modal');
         var header = modal.find('.modal-header');
         var body = modal.find('.modal-body');
@@ -59,7 +59,7 @@ $(document).ready(function() {
         `);
     })
     // Delete video
-    $('.video-admin .glyphicon-trash').click(function() {
+    $('.video-admin .glyphicon-trash').on('click', function() {
         if(confirm('Are you sure you want to delete this video?')) {
             $.post({
                 url: deleteVideoURL,

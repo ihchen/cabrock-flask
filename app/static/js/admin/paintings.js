@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Upload Image (create form on modal)
-    $('.admin-page-buttons .glyphicon-plus').click(function() {
+    $('.admin-page-buttons .glyphicon-plus').on('click', function() {
         var modal = $('#admin-modal');
         var header = modal.find('.modal-header');
         var body = modal.find('.modal-body');
@@ -86,7 +86,7 @@ $(document).ready(function() {
     })
 
     // Edit Image
-    $('.image-admin .glyphicon-pencil').click(function() {
+    $('.image-admin .glyphicon-pencil').on('click', function() {
         var editBtn = $(this);
         var saveBtn = $(this).next('.glyphicon-floppy-disk');
 
@@ -106,7 +106,7 @@ $(document).ready(function() {
         caption.css('opacity', '1')
         // Prevent thumbnail from opening modal on click
         thumbnail.attr('data-toggle', 'offbox');    // Prevent modal from opening
-        thumbnail.click(function(evt) {     // Prevent link from taking you to image
+        thumbnail.on('click', function(evt) {     // Prevent link from taking you to image
             evt.preventDefault();
         })
 
@@ -161,7 +161,7 @@ $(document).ready(function() {
     })
 
     // Delete Image
-    $('.image-admin .glyphicon-trash').click(function() {
+    $('.image-admin .glyphicon-trash').on('click', function() {
         var thumbnail = $(this).parent('.image-admin').prev('a');
         var uniqueID = thumbnail.attr('data-id');   //Uses filename as unique id
         var name = thumbnail.attr('data-title');
