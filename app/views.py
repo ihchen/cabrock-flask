@@ -91,15 +91,12 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = AdminUser.query.get(form.username.data)
-        if user:
-            if user.check_password(form.password.data):
-                login_user(user)
+        if user and user.check_password(form.password.data):
+            login_user(user)
 
-                return redirect(url_for('index'))
-            else:
-                flash('Incorrect password')
+            return redirect(url_for('index'))
         else:
-            flash('Incorrect username')
+            flash('Invalid username or password')
     return render_template('login.html', form=form)
 
 @app.route('/admin/logout')
