@@ -22,7 +22,7 @@ function editAboutComponent(component, editBtn) {
 
     //On save click
     saveBtn.on('click', function() {
-        var newContent = content.children().val();
+        var newContent = $('<div/>').text(content.children().val()).html();
         if(component == 'description') {
             newContent = newContent.replace(/[\r\n|\r|\n]+/g, '</p><p>');
             newContent = "<p>"+newContent+"</p>";

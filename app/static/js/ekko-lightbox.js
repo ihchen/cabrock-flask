@@ -84,13 +84,19 @@ var Lightbox = (function ($) {
 			this._padding = null;
 			this._border = null;
 			this._titleIsShown = false;
-			this._footerIsShown = false;
-			this._wantedWidth = 0;
+    			this._footerIsShown = false;
+
 			this._wantedHeight = 0;
 			this._modalId = 'ekkoLightbox-' + Math.floor(Math.random() * 1000 + 1);
 			this._$element = $element instanceof jQuery ? $element : $($element);
 
 			this._isBootstrap3 = $.fn.modal.Constructor.VERSION[0] == 3;
+
+			/* START EDIT */
+			// XSS Prevention
+			this._config.title = $('<div/>').text(this._config.title).html();
+			this._config.footer = $('<div/>').text(this._config.footer).html();
+			/* END EDIT */
 
 			var h4 = '<h4 class="modal-title">' + (this._config.title || "&nbsp;") + '</h4>';
 			var btn = '<button type="button" class="close" data-dismiss="modal" aria-label="' + this._config.strings.close + '"><span aria-hidden="true">&times;</span></button>';
@@ -359,6 +365,14 @@ var Lightbox = (function ($) {
 			value: function _updateTitleAndFooter() {
 				var title = this._$element.data('title') || "";
 				var caption = this._$element.data('footer') || "";
+				/* START EDIT */
+				// Escape html characters but keep line breaks
+				title = $('<div/>').text(title).html();
+				var captionDetails = caption.split("<br />");
+				for(var i = 0; i < captionDetails.length; i++)
+					captionDetails[i] = $('<div/>').text(captionDetails[i]).html();
+				caption = captionDetails.join("<br />");
+				/* END EDIT */
 
 				this._titleIsShown = false;
 				if (title || this._config.alwaysShowClose) {
@@ -558,7 +572,7 @@ var Lightbox = (function ($) {
 					height = (maxWidth - widthBorderAndPadding) / width * height;
 					width = maxWidth;
 				} else width = width + widthBorderAndPadding;
-				console.log(height);
+
 				var headerHeight = 0,
 				    footerHeight = 0;
 

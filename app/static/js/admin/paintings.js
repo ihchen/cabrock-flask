@@ -137,9 +137,9 @@ $(document).ready(function() {
             })
 
             // Update page
-            captionTitle.html(details.name)
+            captionTitle.text(details.name)
             captionDetails.children('.detail-item').each(function() {
-                $(this).html(details[$(this).attr('data-type')]);
+                $(this).text(details[$(this).attr('data-type')]);
             })
             newFooter = ""
             if(details.medium != "") newFooter += details.medium;
