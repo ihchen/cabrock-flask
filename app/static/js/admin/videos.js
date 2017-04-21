@@ -14,11 +14,23 @@ function createVideoFormContent(name='', url='') {
     return inputName+inputEmbed
 }
 
+function checkYoutubeEmbed(src) {
+    return /youtube.com\/embed/.test(src);
+}
+
 $(document).ready(function() {
+    $('.temp-iframe').each(function() {
+        var src = $(this).data('src');
+        if(checkYoutubeEmbed(src))
+            $(this).replaceWith(`<iframe class="embed-responsive-item" src="`+src+`" allowfullscreen></iframe>`);
+    });
+
     // Prep popovers
     $('[data-toggle="popover"]').popover();
     $('.video-admin .glyphicon-pencil').each(function() {
-        var oldurl = $(this).parent('.video-admin').prev().children('iframe').attr('src');
+        var iframeContainer = $(this).parent('.video-admin').prev();
+        var oldurl = iframeContainer.children('.temp-iframe').data('src')
+                    || iframeContainer.children('iframe').attr('src');
         var form = `<form method="POST" action="`+editVideoURL+`">`+createVideoFormContent(
                         name=$(this).attr('data-title'),
                         url=oldurl
