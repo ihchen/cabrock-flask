@@ -7,6 +7,7 @@ $(document).ready(function() {
         var footer = modal.find('.modal-footer');
 
         // Form elements
+        var csrftoken = `<input type="hidden" name="csrf_token" value="`+csrf_token+`" />`;
         var inputTitle = `
             <div class="form-group required">
                 <label for="inputTitle">Title</label>
@@ -58,7 +59,7 @@ $(document).ready(function() {
             </div>
         `;
         var hiddenURL = `<input type="hidden" name="currentURL" value="`+currentURL+`" />`;
-        var form = `<form id="uploadPaintingForm" method="POST" action="`+uploadPaintingURL+`" enctype="multipart/form-data">`+inputTitle+inputCategory+inputMedium+inputDimensions+inputYear+inputImage+hiddenURL+`</form>`;
+        var form = `<form id="uploadPaintingForm" method="POST" action="`+csrftoken+uploadPaintingURL+`" enctype="multipart/form-data">`+inputTitle+inputCategory+inputMedium+inputDimensions+inputYear+inputImage+hiddenURL+`</form>`;
 
         // Set Modal content
         header.html(`

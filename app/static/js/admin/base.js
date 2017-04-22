@@ -26,6 +26,7 @@ function ajaxSuccessAlert(return_data) {
 }
 
 function createCategoryFormContents(name='', header='', description='', thumbsize=false) {
+    var csrftoken = `<input type="hidden" name="csrf_token" value="`+csrf_token+`" />`;
     var inputName = `
         <div class="form-group required">
             <label for="inputName">Category Name</label>
@@ -51,7 +52,7 @@ function createCategoryFormContents(name='', header='', description='', thumbsiz
         </div>
     `;
     var hiddenURL = `<input type="hidden" name="currentURL" value="`+currentURL+`" />`;
-    var form = inputName+inputHeader+inputDescription+inputThumbsize+hiddenURL;
+    var form = csrftoken+inputName+inputHeader+inputDescription+inputThumbsize+hiddenURL;
 
     return form;
 }

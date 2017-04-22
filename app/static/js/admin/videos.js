@@ -1,4 +1,5 @@
 function createVideoFormContent(name='', url='') {
+    var csrftoken = `<input type="hidden" name="csrf_token" value="`+csrf_token+`" />`;
     var inputName = `
         <div class="form-group">
             <label for="inputName">Name</label>
@@ -11,7 +12,7 @@ function createVideoFormContent(name='', url='') {
             <input id="inputEmbed" type="text" class="form-input form-control" name="embedurl" value="`+url+`" required />
         </div>
     `;
-    return inputName+inputEmbed
+    return csrftoken+inputName+inputEmbed;
 }
 
 function checkYoutubeEmbed(src) {

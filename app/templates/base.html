@@ -126,6 +126,16 @@
         {% if current_user.is_authenticated %}
         <script src="{{ url_for('static', filename='js/Sortable.min.js') }}"></script>
         <script>
+        // Set up CSRF Token
+        var csrf_token = "{{ csrf_token() }}";
+        $.ajaxSetup({
+            beforeSend: function(xhs, settings) {
+                if(!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                    xhs.setRequestHeader("X_CSRFToken", csrf_token);
+                }
+            }
+        })
+
         var currentURL = "{{ current_url }}";
         var addNewCategoryURL = "{{ url_for('add_category') }}";
         var updateCategoryOrderURL = "{{ url_for('update_category_order') }}";
