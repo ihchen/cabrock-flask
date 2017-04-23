@@ -22,7 +22,7 @@ function ajaxSuccessAlert(return_data) {
     alert.style.display = "block";
     setTimeout(function() {
         alert.style.display = "none";
-    }, 2000);
+    }, 5000);
 }
 
 function createCategoryFormContents(name='', header='', description='', thumbsize=false) {
