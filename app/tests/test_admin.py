@@ -98,7 +98,7 @@ class AdminLogin(TestCase):
             password="incorrectpass"
         ), follow_redirects=True)
 
-        self.assertIn(b'Incorrect password', response.data)
+        self.assertIn(b'Invalid username or password', response.data)
 
     def test_admin_incorrect_username_login(self):
         u = AdminUser(username="testname", password="testpass")
@@ -110,7 +110,7 @@ class AdminLogin(TestCase):
             password="incorrectpass"
         ), follow_redirects=True)
 
-        self.assertIn(b'Incorrect username', response.data)
+        self.assertIn(b'Invalid username or password', response.data)
 
 class AdminEdit(TestCase):
     def test_ajax_request_update_painting_details(self):
