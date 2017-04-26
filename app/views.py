@@ -243,6 +243,10 @@ def edit_painting():
 
 @app.route('/update/categories/details', methods=['POST'])
 def edit_category():
+    if not request.form['id'] == request.form['name'] and Category.query.filter_by(name=request.form['name']).count():
+        flash('Category already exists')
+        return redirect(request.form['currentURL'])
+
     c = Category.query.filter_by(name=request.form['id']).first()
     c_p = Painting.query.filter_by(category_name=c.name)
     c.name = request.form['name']
