@@ -59,7 +59,7 @@ $(document).ready(function() {
             </div>
         `;
         var hiddenURL = `<input type="hidden" name="currentURL" value="`+currentURL+`" />`;
-        var form = `<form id="uploadPaintingForm" method="POST" action="`+csrftoken+uploadPaintingURL+`" enctype="multipart/form-data">`+inputTitle+inputCategory+inputMedium+inputDimensions+inputYear+inputImage+hiddenURL+`</form>`;
+        var form = `<form id="uploadPaintingForm" method="POST" action="`+uploadPaintingURL+`" enctype="multipart/form-data">`+csrftoken+inputTitle+inputCategory+inputMedium+inputDimensions+inputYear+inputImage+hiddenURL+`</form>`;
 
         // Set Modal content
         header.html(`
