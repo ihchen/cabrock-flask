@@ -57,7 +57,7 @@ def contact():
             sender = form.email.data,
             recipients = [MAIL_USERNAME],
         )
-        msg.body = form.message.data+"\n\nFrom: "+form.name.data
+        msg.body = form.message.data+"\n\nFrom: "+form.name.data+" ("+form.email.data+")"
         msg.html = render_template('contact_email.html',
             name=form.name.data,
             email=form.email.data,
