@@ -38,7 +38,16 @@ class Category(db.Model):
     thumbsize_large = db.Column(db.Boolean, default=False)
 
     def __init__(self, **kwargs):
-        kwargs['slug'] = slugify(kwargs.get('name'))
+        slug = slugify(kwargs.get('name'))
+        slug_already_exists = Category.query.filter_by(slug=slug).count()
+        if slug_already_exists:
+            slug = slug + "-0"
+            # If a slug that was originally used for uniqueness, increment count
+            while(Category.query.filter_by(slug=slug).count()):
+                num = int(slug[len(slug)-1])
+                slug = slug[:-1] + str(num+1)
+
+        kwargs['slug'] = slug
         super().__init__(**kwargs)
 
     def __repr__(self):

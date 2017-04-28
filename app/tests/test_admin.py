@@ -98,7 +98,7 @@ class AdminLogin(TestCase):
             password="incorrectpass"
         ), follow_redirects=True)
 
-        self.assertIn(b'Incorrect password', response.data)
+        self.assertIn(b'Invalid username or password', response.data)
 
     def test_admin_incorrect_username_login(self):
         u = AdminUser(username="testname", password="testpass")
@@ -110,7 +110,7 @@ class AdminLogin(TestCase):
             password="incorrectpass"
         ), follow_redirects=True)
 
-        self.assertIn(b'Incorrect username', response.data)
+        self.assertIn(b'Invalid username or password', response.data)
 
 class AdminEdit(TestCase):
     def test_ajax_request_update_painting_details(self):
@@ -194,6 +194,30 @@ class AdminEdit(TestCase):
         v = Video.query.get(1)
         self.assertEqual(v.name, 'newvid')
         self.assertEqual(v.embed_url, 'newvidurl.com')
+
+    def test_edit_category_unique_constraint(self):
+        self.createCategories(2)
+
+        self.app.post('/update/categories/details', data=dict(
+            id = 'cat_test_2',
+            name = 'cat_test_1',
+            header = '',
+            description = ''
+        ))
+
+        self.assertEqual(Category.query.filter_by(name='cat_test_2').count(), 1)
+
+    def test_edit_category_pass_old_name_as_name(self):
+        self.createCategories(1)
+
+        self.app.post('/update/categories/details', data=dict(
+            id = 'cat_test_1',
+            name = 'cat_test_1',
+            header = '',
+            description = ''
+        ))
+
+        self.assertEqual(Category.query.filter_by(name='cat_test_1').count(), 1)
 
 class AdminDelete(TestCase):
     def test_ajax_request_delete_painting(self):
@@ -345,6 +369,25 @@ class AdminUpload(TestCase):
             embedurl="test.com"
         ))
         self.assertEqual(Video.query.count(), 1)
+
+    def test_add_category_with_slug_already_taken(self):
+        self.createCategories(1)
+
+        self.app.post('/update/categories/new', data=dict(
+            name = 'cat test 1',
+            header = '',
+            description = ''
+        ))
+
+        self.assertEqual(Category.query.filter_by(slug='cat-test-1-0').count(), 1)
+
+        self.app.post('/update/categories/new', data=dict(
+            name = 'cat-test-1',
+            header = '',
+            description = ''
+        ))
+
+        self.assertEqual(Category.query.filter_by(slug='cat-test-1-1').count(), 1)
 
 class AdminAbout(TestCase):
     def test_about_edit_quote(self):

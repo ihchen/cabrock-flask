@@ -57,7 +57,7 @@ def contact():
             sender = form.email.data,
             recipients = [MAIL_USERNAME],
         )
-        msg.body = form.message.data+"\n\nFrom: "+form.name.data
+        msg.body = form.message.data+"\n\nFrom: "+form.name.data+" ("+form.email.data+")"
         msg.html = render_template('contact_email.html',
             name=form.name.data,
             email=form.email.data,
@@ -243,6 +243,10 @@ def edit_painting():
 
 @app.route('/update/categories/details', methods=['POST'])
 def edit_category():
+    if not request.form['id'] == request.form['name'] and Category.query.filter_by(name=request.form['name']).count():
+        flash('Category already exists')
+        return redirect(request.form['currentURL'])
+
     c = Category.query.filter_by(name=request.form['id']).first()
     c_p = Painting.query.filter_by(category_name=c.name)
     c.name = request.form['name']

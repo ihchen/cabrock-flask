@@ -93,9 +93,9 @@ var uploadPaintingURL = "{{ url_for('upload_painting') }}";
 <script src="{{ url_for('static', filename='js/admin/paintings.js') }}"></script>
 {% if category %}
 <script>
-var categoryName = '{{ category.name }}';
-var categoryHeader = '{% if category.header %}{{ category.header }}{% endif %}';
-var categoryDescription = '{% if category.description %}{{ category.description }}{% endif %}';
+var categoryName = {{ category.name|tojson }};
+var categoryHeader = {% if category.header %}{{ category.header|tojson }}{% else %}''{% endif %};
+var categoryDescription = {% if category.description %}{{ category.description|tojson }}{% else %}''{% endif %};
 var categoryThumbsize = {% if category.thumbsize_large %}true{% else %}false{% endif %};
 var editCategoryURL = "{{ url_for('edit_category')}}";
 </script>

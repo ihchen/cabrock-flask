@@ -8,7 +8,7 @@ $(document).ready(function() {
         // Set Modal content
         header.html(`
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-            <h4>Edit Category: "`+categoryName+`"</h4>
+            <h4>Edit Category: "`+$('<div/>').text(categoryName).html()+`"</h4>
         `);
         body.html(`<form id="editCategoryForm" method="POST" action="`+editCategoryURL+`">`+createCategoryFormContents(
             name=categoryName,
