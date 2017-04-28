@@ -131,7 +131,7 @@
         $.ajaxSetup({
             beforeSend: function(xhs, settings) {
                 if(!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
-                    xhs.setRequestHeader("X_CSRFToken", csrf_token);
+                    xhs.setRequestHeader("X-CSRFToken", csrf_token);
                 }
             }
         })
