@@ -282,6 +282,9 @@ def edit_video():
 @app.route('/update/about/details', methods=['POST'])
 def edit_about():
     model = About.query.get(1)
+    if model is None:
+        model = About()
+        db.session.add(model)
     setattr(model, request.form['component'], request.form['content'])
     return commitAndJsonify();
 
