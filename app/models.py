@@ -131,3 +131,12 @@ class About(db.Model):
     description = db.Column(db.String)
     quote = db.Column(db.String)
     quotee = db.Column(db.String)
+
+    def __init__(self, *args, **kwargs):
+        if not kwargs.get('description'):
+            kwargs['description'] = ''
+        if not kwargs.get('quote'):
+            kwargs['quote'] = ''
+        if not kwargs.get('quotee'):
+            kwargs['quotee'] = ''
+        super().__init__(**kwargs)
