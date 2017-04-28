@@ -21,7 +21,7 @@ function checkYoutubeEmbed(src) {
 
 $(document).ready(function() {
     $('.temp-iframe').each(function() {
-        var src = $(this).data('src');
+        var src = $(this).attr('src');
         if(checkYoutubeEmbed(src))
             $(this).replaceWith(`<iframe class="embed-responsive-item" src="`+src+`" allowfullscreen></iframe>`);
     });
@@ -76,7 +76,7 @@ $(document).ready(function() {
         if(confirm('Are you sure you want to delete this video?')) {
             $.post({
                 url: deleteVideoURL,
-                data: {url: $(this).parent('.video-admin').prev().children('iframe').attr('src')},
+                data: {url: $(this).parent('.video-admin').prev().children().attr('src')},
                 success: function(return_data) {
                     ajaxSuccessAlert(return_data);
                 }
