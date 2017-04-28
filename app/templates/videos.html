@@ -26,8 +26,11 @@ View videos of Carly A. Brock while she is painting.
     {% for v in videos %}
     <div class="col-lg-6 col-md-6 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12 video-item{% if current_user.is_authenticated %} admin{% endif %}">
         <div class="embed-responsive embed-responsive-16by9">
-            <!-- <iframe class="embed-responsive-item" src="{{ v.embed_url }}" allowfullscreen></iframe> -->
-            <div class="temp-iframe" src="{{ v.embed_url }}"></div>
+            {% if current_user.is_authenticated %}
+                <div class="temp-iframe" src="{{ v.embed_url }}"></div>
+            {% else %}
+                <iframe class="embed-responsive-item" src="{{ v.embed_url }}" allowfullscreen></iframe>
+            {% endif %}
         </div>
         {% if current_user.is_authenticated %}
         <div class="video-admin admin-hover">
