@@ -73,11 +73,11 @@
 
         {% if current_user.is_authenticated %}
         <div class="alert alert-success alert-dismissable admin-alert">
-            <a class="close" data-dismiss="alert">&times;</a>
+            <a class="close" onclick="closeAlert()">&times;</a>
             Update Successful
         </div>
         <div class="alert alert-danger alert-dismissable admin-alert">
-            <a class="close" data-dismiss="alert">&times;</a>
+            <a class="close" onclick="closeAlert()">&times;</a>
             Update Unsuccessful:
         </div>
         <div id="admin-modal" class="modal fade" tabindex=-1>

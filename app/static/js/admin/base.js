@@ -10,7 +10,9 @@ function createSortable(id, draggable, handle, animation, update_fn) {
     })
 }
 
+var timeoutID = -1;
 function ajaxSuccessAlert(return_data) {
+    clearTimeout(timeoutID);
     var alert;
     if(return_data.success) {
         alert = $('.admin-alert.alert-success')[0];
@@ -20,9 +22,14 @@ function ajaxSuccessAlert(return_data) {
         alert.innerHTML = '<a class="close" data-dismiss="alert">&times;</a>Update Unsuccessful: '+return_data.exception;
     }
     alert.style.display = "block";
-    setTimeout(function() {
+    timeoutID = setTimeout(function() {
         alert.style.display = "none";
     }, 5000);
+}
+
+function closeAlert() {
+    $('.alert').hide();
+    clearTimeout(timeoutID);
 }
 
 function createCategoryFormContents(name='', header='', description='', thumbsize=false) {
