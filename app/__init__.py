@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from flask_mail import Mail
 from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
-from flask_assets import Environment, Bundle
+from flask_assets import Environment
 
 app = Flask(__name__)
 app.config.from_object('config')
