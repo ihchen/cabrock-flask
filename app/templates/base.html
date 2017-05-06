@@ -12,9 +12,6 @@
         <meta name="keywords" content="{% block keywords %}{% endblock %}" />
 
         <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" /> -->
-        {% assets filters="cssmin", output="gen/base.min.css", "css/base.css" %}
-            <link rel="stylesheet" href="{{ ASSET_URL }}" />
-        {% endassets %}
         {% if current_user.is_authenticated %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/base.css') }}" />
         {% endif %}

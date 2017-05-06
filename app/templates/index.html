@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block stylesheets %}
+{% assets filter="cssmin", output="gen/base.min.css", "css/base.css" %}
+<link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets %}
+{% endblock %}
+
 {% block description %}
 Carly A. Brock is a painter primarily focused on landscape painting. Discover more about her and her artworks here.
 {% endblock %}

@@ -2,6 +2,12 @@
 
 {% block title %}: Page Not Found{% endblock %}
 
+{% block stylesheets %}
+{% assets filter="cssmin", output="gen/base.min.css", "css/base.css" %}
+<link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets %}
+{% endblock %}
+
 {% block body %}
 <div class="page-header">
     <h2 class="text-center">Page Not Found</h2>
