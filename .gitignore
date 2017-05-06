@@ -13,3 +13,4 @@ depopulate.py
 imageDetails.csv
 populate.py
 update
+.webassets-cache
