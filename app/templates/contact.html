@@ -9,7 +9,10 @@ Contact Carly A. Brock.
 {% block keywords %}Contact Carly Brock, email, purchase painting, artwork{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}" />
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}" /> -->
+{% assets filter="cssmin", output="gen/contact.min.css", "css/contact.css" %}
+<link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets %}
 {% endblock %}
 
 {% block body %}

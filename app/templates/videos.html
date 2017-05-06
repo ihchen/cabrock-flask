@@ -9,7 +9,10 @@ View videos of Carly A. Brock while she is painting.
 {% block keywords %}Carly Brock videos, painting videos, timelapse{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/videos.css') }}" />
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/videos.css') }}" /> -->
+{% assets filter="cssmin", output="gen/videos.min.css", "css/videos.css" %}
+<link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets %}
 {% if current_user.is_authenticated %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/videos.css') }}" />
 {% endif %}

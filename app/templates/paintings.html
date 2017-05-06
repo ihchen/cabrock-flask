@@ -9,8 +9,11 @@ View Carly A. Brock's {% if category %}{{category.name}}{% endif %} paintings.
 {% block keywords %}Carly Brock paintings, artworks{% if category %}, {{category.name}}{% endif %}{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/ekko-lightbox.css') }}" />
-<link rel="stylesheet" href="{{ url_for('static', filename='css/paintings.css') }}" />
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/ekko-lightbox.css') }}" /> -->
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/paintings.css') }}" /> -->
+{% assets filter="cssmin", output="gen/paintings.min.css", "css/paintings.css", "css/ekko-lightbox.css" %}
+<link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets %}
 {% if current_user.is_authenticated %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/paintings.css') }}" />
 {% endif %}
