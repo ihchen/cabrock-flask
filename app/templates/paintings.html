@@ -11,7 +11,7 @@ View Carly A. Brock's {% if category %}{{category.name}}{% endif %} paintings.
 {% block stylesheets %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/ekko-lightbox.css') }}" /> -->
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/paintings.css') }}" /> -->
-{% assets filter="cssmin", output="gen/paintings.min.css", "css/base.css", "css/paintings.css", "css/ekko-lightbox.css" %}
+{% assets filter="cssmin", output="gen/paintings.min.css", "css/base.css", "css/paintings.css", "lib/ekko-lightbox.css" %}
 <link rel="stylesheet" href="{{ ASSET_URL }}" />
 {% endassets %}
 {% if current_user.is_authenticated %}
@@ -84,7 +84,7 @@ View Carly A. Brock's {% if category %}{{category.name}}{% endif %} paintings.
 <!-- <script src="{{ url_for('static', filename='js/ekko-lightbox.js') }}"></script>
 <script src="{{ url_for('static', filename='js/hammer.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/paintings.js') }}"></script> -->
-{% assets filter="jsmin", output="gen/paintings.min.js", "js/ekko-lightbox.js", "js/hammer.min.js", "js/paintings.js" %}
+{% assets filter="jsmin", output="gen/paintings.min.js", "lib/ekko-lightbox.js", "lib/hammer.min.js", "js/paintings.js" %}
 <script src="{{ ASSET_URL }}"></script>
 {% endassets %}
 {% if current_user.is_authenticated %}

@@ -27,7 +27,7 @@ View Carly A. Brock's resume.
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/pdfobject.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/pdfobject.min.js') }}"></script>
 <script>
     PDFObject.embed("{{ url_for('static', filename='images/resume.pdf') }}", "#pdf");
 </script>
