@@ -77,7 +77,16 @@ View Carly A. Brock's {% if category %}{{category.name}}{% endif %} paintings.
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/ekko-lightbox.css') }}" /> -->
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/paintings.css') }}" /> -->
 {% assets filter="cssmin", output="gen/paintings.min.css", "css/base.css", "css/paintings.css", "lib/ekko-lightbox.css" %}
-<link rel="stylesheet" href="{{ ASSET_URL }}" />
+<!-- <link rel="stylesheet" href="{{ ASSET_URL }}" /> -->
+<script>var cb = function() {
+var l = document.createElement('link'); l.rel = 'stylesheet';
+l.href = '{{ ASSET_URL }}';
+var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+};
+var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+webkitRequestAnimationFrame || msRequestAnimationFrame;
+if (raf) raf(cb);
+else window.addEventListener('load', cb);</script>
 {% endassets %}
 {% if current_user.is_authenticated %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/paintings.css') }}" />

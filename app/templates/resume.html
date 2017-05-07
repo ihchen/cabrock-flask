@@ -30,6 +30,15 @@ View Carly A. Brock's resume.
 {% block stylesheets %}
 <!-- <link rel='stylesheet' href="{{ url_for('static', filename='css/resume.css') }}" /> -->
 {% assets filter="cssmin", output="gen/resume.min.css", "css/base.css", "css/resume.css" %}
-<link rel="stylesheet" href="{{ ASSET_URL }}" />
+<!-- <link rel="stylesheet" href="{{ ASSET_URL }}" /> -->
+<script>var cb = function() {
+var l = document.createElement('link'); l.rel = 'stylesheet';
+l.href = '{{ ASSET_URL }}';
+var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+};
+var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+webkitRequestAnimationFrame || msRequestAnimationFrame;
+if (raf) raf(cb);
+else window.addEventListener('load', cb);</script>
 {% endassets %}
 {% endblock %}

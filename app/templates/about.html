@@ -49,7 +49,16 @@ Learn more about Carly A. Brock and how to purchase one of her paintings.
 {% block stylesheets %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}" /> -->
 {% assets filter="cssmin", output="gen/about.min.css", "css/base.css", "css/about.css" %}
-<link rel="stylesheet" href="{{ ASSET_URL }}" />
+<!-- <link rel="stylesheet" href="{{ ASSET_URL }}" /> -->
+<script>var cb = function() {
+var l = document.createElement('link'); l.rel = 'stylesheet';
+l.href = '{{ ASSET_URL }}';
+var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+};
+var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+webkitRequestAnimationFrame || msRequestAnimationFrame;
+if (raf) raf(cb);
+else window.addEventListener('load', cb);</script>
 {% endassets %}
 {% if current_user.is_authenticated %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/about.css') }}" />

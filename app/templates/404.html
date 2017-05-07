@@ -2,10 +2,8 @@
 
 {% block title %}: Page Not Found{% endblock %}
 
-{% block stylesheets %}
-{% assets filter="cssmin", output="gen/base.min.css", "css/base.css" %}
-<link rel="stylesheet" href="{{ ASSET_URL }}" />
-{% endassets %}
+{% block critical_css %}
+<style>html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}footer{display:block}a{background-color:transparent}h1{margin:.67em 0;font-size:2em}@font-face{font-family:'Glyphicons Halflings';src:url(../fonts/glyphicons-halflings-regular.eot);src:url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'),url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'),url(../fonts/glyphicons-halflings-regular.woff) format('woff'),url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'),url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')}.glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:400;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.glyphicon-menu-hamburger:before{content:"\e236"}*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html{font-size:10px}body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff}a{color:#337ab7;text-decoration:none}h1,h2{font-family:inherit;font-weight:500;line-height:1.1;color:inherit}h1,h2{margin-top:20px;margin-bottom:10px}h1{font-size:36px}h2{font-size:30px}p{margin:0 0 10px}.text-center{text-align:center}.text-muted{color:#777}.page-header{padding-bottom:9px;margin:40px 0 20px;border-bottom:1px solid #eee}ul{margin-top:0;margin-bottom:10px}.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:768px){.container{width:750px}}@media (min-width:992px){.container{width:970px}}@media (min-width:1200px){.container{width:1170px}}.row{margin-right:-15px;margin-left:-15px}.col-lg-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px}@media (min-width:1200px){.col-lg-12{float:left}.col-lg-12{width:100%}}.dropdown{position:relative}.dropdown-menu{position:absolute;top:100%;left:0;z-index:1000;display:none;float:left;min-width:160px;padding:5px 0;margin:2px 0 0;font-size:14px;text-align:left;list-style:none;background-color:#fff;-webkit-background-clip:padding-box;background-clip:padding-box;border:1px solid #ccc;border:1px solid rgba(0,0,0,.15);border-radius:4px;-webkit-box-shadow:0 6px 12px rgba(0,0,0,.175);box-shadow:0 6px 12px rgba(0,0,0,.175)}.nav{padding-left:0;margin-bottom:0;list-style:none}.nav>li{position:relative;display:block}.nav>li>a{position:relative;display:block;padding:10px 15px}.jumbotron{padding-top:30px;padding-bottom:30px;margin-bottom:30px;color:inherit;background-color:#eee}.jumbotron h1{color:inherit}@media screen and (min-width:768px){.jumbotron{padding-top:48px;padding-bottom:48px}.jumbotron h1{font-size:63px}}.container:after,.container:before,.nav:after,.nav:before,.row:after,.row:before{display:table;content:" "}.container:after,.nav:after,.row:after{clear:both}@-ms-viewport{width:device-width}@font-face{font-family:"Museo-Slab";src:url(//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/01ab709f-22cf-4831-b24a-8cf4eb852687.eot?#iefix) format("eot"),url(//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/cacc0862-f146-4746-92b1-60e6114a66c4.woff) format("woff"),url(//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/54006f54-b61e-4103-abf8-b1d0294a2a9c.ttf) format("truetype"),url(//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/e5841f2e-b306-4583-bfc3-a0e06742fedd.svg#e5841f2e-b306-4583-bfc3-a0e06742fedd) format("svg")}@font-face{font-family:"Caudex";font-style:normal;font-weight:400;src:local("Caudex"),url("http://fonts.gstatic.com/s/caudex/v6/tEyJJhH5jnB2yxr-0TBTSg.woff2") format("woff2");unicode-range:U+0-FF,U+131,U+152-153,U+2C6,U+2DA,U+2DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000}#title-box{background-color:transparent!important}#title{color:black;font-family:Museo-Slab;text-decoration:none}.nav li{display:inline-block}.nav a{color:#595959;font-family:Caudex}.dropdown-menu{margin-top:0;text-align:center;border-radius:0;left:50%;transform:translateX(-50%)}.dropdown-item{display:block}footer{padding-top:3em;padding-bottom:3em}.page-header{border-bottom:.1em dotted black}.page-header h2{font-family:Museo-Slab}#navicon{font-size:1.5em;display:none}.dropdown-btn{display:none;position:absolute;right:0;top:50%;transform:translateY(-50%);height:100%;width:20%}.downarrow{font-size:.65em;position:absolute;right:50%;top:25%;transform:rotate(45deg);border-style:solid;border-width:1em .35em .35em 1em;border-color:transparent #595959 #595959 transparent}</style>
 {% endblock %}
 
 {% block body %}
@@ -17,4 +15,19 @@
         The page you were looking for does not exist.
     </div>
 </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% assets filter="cssmin", output="gen/base.min.css", "css/base.css" %}
+<!-- <link rel="stylesheet" href="{{ ASSET_URL }}" /> -->
+<script>var cb = function() {
+var l = document.createElement('link'); l.rel = 'stylesheet';
+l.href = '{{ ASSET_URL }}';
+var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+};
+var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+webkitRequestAnimationFrame || msRequestAnimationFrame;
+if (raf) raf(cb);
+else window.addEventListener('load', cb);</script>
+{% endassets %}
 {% endblock %}
