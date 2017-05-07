@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
 from flask_assets import Environment
 from flask_htmlmin import HTMLMIN
+from flask_resize import Resize
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -17,5 +18,6 @@ login_manager.init_app(app)
 csrf = CSRFProtect(app)
 assets = Environment(app)
 HTMLMIN(app)
+resize = Resize(app)
 
 from app import views, models
