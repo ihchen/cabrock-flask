@@ -21,7 +21,7 @@
         <!-- Header -->
         <div class="jumbotron text-center" id="title-box">
             <h1><a href="{{ url_for('index') }}" id="title">Carly A. Brock</a></h1>
-            <div id="navicon" class="glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target=".nav"></div>
+            <div id="navicon" class="glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target=".nav" style="cursor: pointer;"></div>
             <ul class="nav">
                 <li class="nav-item dropdown hover{% if current_user.is_authenticated %} admin{% endif %}">
                     <a href="{{ url_for('paintings') }}" class="nav-link">Paintings</a>
