@@ -19,7 +19,6 @@ jsmin==2.2.2
 Mako==1.0.6
 MarkupSafe==1.0
 olefile==0.44
-PIL==1.1.7
 pilkit==2.0
 Pillow==4.0.0
 pillowcase==2.0.0
