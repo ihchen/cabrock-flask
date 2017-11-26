@@ -10,7 +10,15 @@ Carly A. Brock is a painter primarily focused on landscape painting. Discover mo
 {% endblock %}
 
 {% block body %}
-<img class="center-block img-responsive" src="{{ url_for('static', filename='images/Skagit Sunset-min.jpg') }}" alt="Skagit Sunset by Carly A. Brock" />
+<img class="center-block img-responsive"
+	{% if home_page_image is not none %}
+		src="{{ url_for('get_media', filename=home_page_image.filename, file_type='image') }}"
+		alt="{{ home_page_image.name }} by Carly A. Brock"
+	{% else %}
+		src="{{ url_for('static', filename='images/Skagit Sunset-min.jpg') }}"
+		alt="Skagit Sunset by Carly A. Brock"
+	{% endif %}
+/>
 {% endblock %}
 
 {% block stylesheets %}

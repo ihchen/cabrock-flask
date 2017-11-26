@@ -17,7 +17,8 @@ def render_with_categories(template, **kwargs):
 
 @app.route('/')
 def index():
-    return render_with_categories('index.html')
+    home_page_image = Painting.query.filter_by(home_page_image=True).first()
+    return render_with_categories('index.html', home_page_image=home_page_image)
 
 @app.route('/paintings/')
 @app.route('/paintings/<category_slug>')
