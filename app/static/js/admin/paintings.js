@@ -17,7 +17,7 @@ $(document).ready(function() {
         var inputCategory = `
             <div class="form-group">
                 <label for="inputCategory">Category</label><br />
-                <select id="inputCategory" name="category">
+                <select id="inputCategory" name="category" class="form-control">
                     <option value=''>---------</option>`+
                     (function() {
                         var categoryOptions = ``;
