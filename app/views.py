@@ -18,7 +18,8 @@ def render_with_categories(template, **kwargs):
 @app.route('/')
 def index():
     home_page_image = Painting.query.filter_by(home_page_image=True).first()
-    return render_with_categories('index.html', home_page_image=home_page_image)
+    paintings = Painting.query.all()
+    return render_with_categories('index.html', home_page_image=home_page_image, paintings=paintings)
 
 @app.route('/paintings/')
 @app.route('/paintings/<category_slug>')
@@ -292,6 +293,25 @@ def edit_about():
         db.session.add(model)
     setattr(model, request.form['component'], request.form['content'])
     return commitAndJsonify();
+
+@app.route('/update/home/image', methods=['POST'])
+def change_home_page_image():
+    old_image = Painting.query.filter_by(home_page_image=True).first()
+    if old_image is not None:
+        old_image.home_page_image = False
+        db.session.add(old_image)
+
+    new_image = Painting.query.filter_by(filename=request.form['imagePath']).first()
+    new_image.home_page_image = True
+    db.session.add(new_image)
+
+    try:
+        db.session.commit()
+        flash('success')
+    except:
+        flash('Database error')
+    
+    return redirect(url_for('index'))
 
 # Deleting from database
 
