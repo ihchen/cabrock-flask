@@ -64,6 +64,7 @@ class Painting(db.Model):
     category_name = db.Column(db.String, db.ForeignKey('category.name'))
     category_order = db.Column(db.Integer, nullable=True)
     home_page_image = db.Column(db.Boolean, default=False)
+    for_sale = db.Column(db.Boolean, default=False)
 
     @staticmethod
     def makeThumbnail(src, dest, large=False):
