@@ -74,10 +74,8 @@ footer {
 
  /* Page header */
 .page-header {
-	border-bottom: .1em dotted black;
-}
-.page-header h2 {
 	font-family: Museo-Slab;
+	border-bottom: .1em dotted black;
 }
 /* Text boxes */
 .text-container {
