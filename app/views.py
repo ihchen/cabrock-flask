@@ -186,6 +186,7 @@ def upload_painting():
         dimensions = request.form['dimensions'],
         year = request.form['year'],
         filename = secure_filename(image.filename),
+        for_sale = True if request.form.get('for_sale') else False
     )
     # Upload File (Use new_painting filename since it would've updated for uniquness)
     image.save(os.path.join(app.config['MEDIA_ROOT'], 'image', new_painting.filename))

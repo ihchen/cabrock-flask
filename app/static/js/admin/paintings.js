@@ -58,8 +58,14 @@ $(document).ready(function() {
                 <p class="help-block">.jpg files only</p>
             </div>
         `;
+        var inputSale = `
+            <div class="form-group">
+                <label for="inputSale">Available for Sale: </label>
+                <input id="inputSale" type="checkbox" class="checkbox-inline" name="for_sale" value="for_sale" />
+            </div>
+        `;
         var hiddenURL = `<input type="hidden" name="currentURL" value="`+currentURL+`" />`;
-        var form = `<form id="uploadPaintingForm" method="POST" action="`+uploadPaintingURL+`" enctype="multipart/form-data">`+csrftoken+inputTitle+inputCategory+inputMedium+inputDimensions+inputYear+inputImage+hiddenURL+`</form>`;
+        var form = `<form id="uploadPaintingForm" method="POST" action="`+uploadPaintingURL+`" enctype="multipart/form-data">`+csrftoken+inputTitle+inputCategory+inputMedium+inputDimensions+inputYear+inputImage+inputSale+hiddenURL+`</form>`;
 
         // Set Modal content
         header.html(`
