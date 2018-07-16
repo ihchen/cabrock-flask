@@ -118,9 +118,22 @@ $(document).ready(function() {
         })
 
         // Change info to inputs
-        captionTitle.html('<input type="text" name="title" value="'+captionTitle.html()+'" />');
+        captionTitle.html('<input class="caption-title-text-field" type="text" name="title" value="'+captionTitle.html()+'" />');
         captionDetails.children('.detail-item').each(function() {
-            $(this).html('<textarea type="text" name="'+$(this).attr('data-type')+'" placeholder="'+$(this).attr('data-type')+'" rows="0">'+$(this).html().replace(/"/g, '&quot;')+'</textarea>');
+            let dataType = $(this).attr('data-type');
+
+            if(dataType == "for_sale") {
+                $(this).html('<input type="checkbox"' +
+                    ($(this).html() === "∗" ? " checked" : "") +
+                    ' name="' + dataType + '">');
+                // The evt.preventDefault() above prevents the checkbox from working.
+                // Stopping propagation prevents the event from bubbling up to that code.
+                $(this).on('click', function(evt) {
+                    evt.stopImmediatePropagation();
+                })
+            } else {
+                $(this).html('<textarea type="text" name="'+dataType+'" placeholder="'+dataType+'" rows="0">'+$(this).html().replace(/"/g, '&quot;')+'</textarea>');
+            }
         })
 
         // Save changes
@@ -128,10 +141,16 @@ $(document).ready(function() {
             // Get updated information
             details = {
                 filename: uniqueID,
-                name: captionTitle.children('input').val(),
+                name: captionTitle.children('.caption-title-text-field').val(),
             }
-            captionDetails.children('.detail-item').children('textarea').each(function() {
-                details[$(this).attr('name')] = $(this).val();
+            captionDetails.children('.detail-item').children().each(function() {
+                var value;
+                if ($(this).is(':checkbox')) {
+                    value = $(this).is(':checked') ? true : false;
+                } else {
+                    value = $(this).val();
+                }
+                details[$(this).attr('name')] = value;
             })
 
             // Send ajax post request to update database
@@ -146,7 +165,11 @@ $(document).ready(function() {
             // Update page
             captionTitle.text(details.name)
             captionDetails.children('.detail-item').each(function() {
-                $(this).text(details[$(this).attr('data-type')]);
+                if ($(this).attr('data-type') === "for_sale") {
+                    $(this).text(details["for_sale"] ? "∗" : "");
+                } else {
+                    $(this).text(details[$(this).attr('data-type')]);
+                }
             })
             newFooter = ""
             if(details.medium != "") newFooter += details.medium;

@@ -241,6 +241,7 @@ def edit_painting():
     p.medium = request.form['medium']
     p.dimensions = request.form['dimensions']
     p.year = request.form['year']
+    p.for_sale = request.form['for_sale'] == "true"
 
     return commitAndJsonify();
 
